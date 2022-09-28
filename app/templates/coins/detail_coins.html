@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block nav %}
+<nav class="header-nav-2">
+     <div class="header-logo-2 ">
+                <a id="return-home" href="{{ url_for("coin.list_coins") }}"><i class="fa-solid fa-x"></i></a>
+            </div>
+            <div class="header-link-2 ">
+                <p>Vos gains</p>
+            </div>
+        </nav>
+{% endblock %}
+{% block content %}
+        <div class="fig">
+                <img class="img-fluid" src="{{ img }}" alt="">
+            </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %} 
+{% block title %}accueil{% endblock %}
+{% block nav %}
+<nav class="header-nav-2">
+     <div class="header-logo-2 ">
+                <a href="{{ url_for("coin.list_coins") }}"><i class="fa-solid fa-x"></i></a>
+            </div>
+            <div class="header-link-2">
+                <p></p>
+            </div>
+        </nav>
+{% endblock %}
+{% block content %}
+    <div class="errors">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+            <h1>error {{ status }}</h1>
+    </div>
+{% endblock %}

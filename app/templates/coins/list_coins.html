@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ titre }}{% endblock %}
+{% block content %}
+    <div class="index-header mb-5">
+        <div class="text-title">
+            {% if all_benef %}
+                {% if all_benef > 0 %}
+                    + {{ all_benef }} €
+                {% else %}
+                    {{ all_benef }} €
+                {% endif %}
+            {% else %}
+                Bienvenue {{ current_user.username }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="container ">
+        <table class="table">
+            {% for item in data %}
+                    {% for coin in coins %}
+                    {% if coin.name == item.name %}
+                        <tr>
+                        <th scope="row">
+                            <a href="{{ url_for('coin.detail_coin', coin_id=coin.id) }}" id="coin-{{ loop.index }}">
+                            {{ item.symbol }}
+                            </a> : ({{ coin.quantity }})
+                        </th>
+                        <th scope="row">{{ coin.value }} €</th>
+                        {% if item.value > coin.value %}
+                            <td class="up"><i class="fa-solid fa-reply-all"></i></td>
+                        {% else %}
+                            <td class="down"><i class="fa-solid fa-share"></i></td>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

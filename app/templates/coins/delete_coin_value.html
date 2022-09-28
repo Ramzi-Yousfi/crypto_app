@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ titre }}{% endblock %}
+{% block nav %}
+    <nav class="header-nav-2">
+        <div class="header-logo-2 ">
+            <a href="{{ url_for("coin.list_coins") }}"><i class="fa-solid fa-x"></i></a>
+        </div>
+        <div class="header-link-2">
+            <p>Supprimer un montant</p>
+        </div>
+    </nav>
+{% endblock %}
+{% block content %}
+    <div class="container ">
+        {% if errors %}
+            <div class="alert alert-danger">
+                {{ errors }}
+            </div>
+        {% endif %}
+        <div class="auth-page">
+            <form action="{{ url_for('coin.delete_value_coin') }}" method="post">
+                {{ form.csrf_token }}
+                <div class="container-fluid form-group auth-form">
+                    <div class="coin-form">
+                        <div class="inner-addon left-addon">
+                            <i class="fa-solid fa-magnifying-glass glyphicon"></i>
+                            {{ form.name(class='input ') }}
+                        </div>
+                        <div class="inner-addon left-addon">
+                            <i class="fa-solid fa-database glyphicon"></i>
+                            {{ form.quantity (class='input',placeholder='Quantité') }}
+                        </div>
+                        <div class="input2">
+                            {{ form.delete(class='btn btn-light btn-sm ',value='supprimer') }}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let select = document.getElementById('name');
+        let quantityId = document.getElementById('quantity');
+        let quantity = JSON.parse(`{{ coins_quantity|tojson }}`);
+        select.addEventListener('change', function () {
+            for (let [key, value] of Object.entries(quantity)) {
+                if (key === select.value) {
+                    quantityId.value = value;
+                }
+            }
+        });
+        window.addEventListener('load', (event) => {
+            let array_key = []
+            for (let [key, value] of Object.entries(quantity)) {
+                array_key.push(key);
+            }
+            let min_key = Math.min(...array_key);
+            quantityId.value = quantity[min_key];
+        });
+
+    </script>
+{% endblock %}

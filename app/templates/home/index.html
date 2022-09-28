@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}accueil{% endblock %}
+
+{% block content %}
+    <div class="index">
+        <div class="index-header">
+            <div class="text-title">
+                Récapitulatif des marchés
+            </div>
+        </div>
+        <div class="container-fluid p-5">
+            <table class="table">
+                <tbody>
+                {% for item in data %}
+                    <tr>
+                        <th scope="row">{{ item.name }}</th>
+                        <td>{{ item.value|round(5, 'floor') }}</td>
+                        {% if item.percent_change_24h > 0 %}
+                            <td class="up"><i class="fa-solid fa-reply-all"></i></td>
+                        {% else %}
+                            <td class="down"><i class="fa-solid fa-share"></i></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

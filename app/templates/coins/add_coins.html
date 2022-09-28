@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block nav %}
+<nav class="header-nav-2">
+     <div class="header-logo-2 ">
+                <a href="{{ url_for("coin.list_coins") }}"><i class="fa-solid fa-x"></i></a>
+            </div>
+            <div class="header-link-2">
+                <p>Ajouter une transaction</p>
+            </div>
+        </nav> 
+{% endblock %}
+{% block content %}
+    <div class="container ">
+        <div class="auth-page">
+            <form action="{{ url_for('coin.add_coin') }}" method="post">
+                {{ form.csrf_token }}
+                <div class="container-fluid form-group auth-form">
+                    <div class="coin-form">
+                        <div class="inner-addon left-addon">
+                            <i class="fa-solid fa-magnifying-glass glyphicon"></i>
+                            {{ form.name(class='input ') }}
+                        </div>
+                        <div class="inner-addon left-addon">
+                            <i class="fa-solid fa-database glyphicon"></i>
+                            {{ form.quantity (class='input',placeholder='Quantité') }}
+                        </div>
+                        <div class="inner-addon left-addon">
+                            <i class="fa-solid fa-euro-sign glyphicon"></i>
+                            {{ form.value (class='input',placeholder='Prix d\'achat' )}}
+                        </div>
+                        <div class="input2">
+                       {{ form.submit(class='btn btn-light btn-sm ',value='ajouter') }}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

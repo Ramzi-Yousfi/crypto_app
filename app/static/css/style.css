@@ -1,0 +1,209 @@
+/*base template*/
+* {
+    color: rgb(239, 239, 239);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(16,15,15);
+}
+
+a{
+    text-decoration:none !important;
+    color: inherit;
+}
+a:hover{
+    text-decoration:none !important;
+    color: inherit;
+}
+li {list-style: none;}
+.header-nav{
+    max-width: 100%;
+    height: 7vh;
+    position: relative;
+    top: 0;
+    left:0 ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: rgba(255, 255, 255, 0.16) 1px solid;
+    padding: 0 15px 0 15px;
+}
+.header-logo{
+    font-family: Akzidenz-GroteskBQ;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+.header-link{
+    padding-right: 4vm;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: row;
+}
+.header-link a{
+    padding: 0 10px 0 10px;
+}
+
+.up i, .down i {rotate: 90deg;}
+
+
+.text-title{
+    font-family: RobotoBold;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+/*nav-2*/
+.header-nav-2{
+    width: 100%;
+    height: 7vh;
+    position: relative;
+    top: 0;
+    left:0 ;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: rgba(255, 255, 255, 0.16) 1px solid;
+    padding: 0 15px 0 15px;
+}
+.header-link-2{
+    text-align: center;
+    width: 90%;
+    padding-right: 12%;
+}
+.header-logo-2{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    padding-left: 1%;
+    padding-top: 4px;
+}
+.header-link-2 p{
+    margin: 0;
+    font-size: 1.5rem;
+}
+/*error*/
+.errors{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.errors i{
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: rgb(239, 239, 239);
+}
+
+/* the index page*/
+.index{
+    position: relative;
+}
+.index-header{
+  background-color: rgb(26, 15, 15);
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table tr{
+    border-bottom: rgba(255, 255, 255, 0.24) 1px solid;
+}
+
+
+/* connexion page*/
+.flash-message{
+    height: 15vh;
+    margin-top: 5vh;
+}
+.auth-page{
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.auth-form{
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: start;
+}
+
+
+/*add coin page*/
+
+.coin-form{
+
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+
+    height: 60vh;
+}
+.inner-addon {
+    position: relative;
+    margin-bottom: 4vh;
+}
+
+
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+.input{
+    padding-left: 30px !important;
+    width: 100% ;
+    height: 35px;
+    background-color: rgb(16,15,15);
+    color-scheme : dark;
+}
+
+.input2{
+    margin-top: 40vh;
+    padding:  0 25px 0 25px !important;
+
+    text-align: center;
+}
+.input2 input{
+    width: 100%;
+}
+
+/*figure page*/
+.fig{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+@media screen and (max-width: 780px){
+    .auth-form{ width: 100%;}
+    .header-link{
+    padding-right: 0;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: row;
+}
+    .header-link a{
+    padding: 0 5px 0 10px;
+}
+    .header-link-2{
+    text-align: left;
+    width: 90%;
+    padding-left: 5%;
+
+}
+    .header-link-2 p{
+    margin: 0;
+    font-size: 1.1rem;
+}
+}
