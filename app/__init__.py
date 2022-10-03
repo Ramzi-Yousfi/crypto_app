@@ -43,6 +43,16 @@ def create_app():
         with app.app_context():
             DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
 
+    from apscheduler.schedulers.blocking import BlockingScheduler
+
+    sched = BlockingScheduler()
+
+    @sched.scheduled_job("interval", minutes=1)
+    def users_coins_save():
+        with app.app_context():
+            DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
+
+    sched.start()
     with app.app_context():
         db.init_app(app)
         db.create_all()
