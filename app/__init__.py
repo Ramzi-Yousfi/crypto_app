@@ -43,9 +43,9 @@ def create_app():
     #    with app.app_context():
     #        DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
 
-    from apscheduler.schedulers.blocking import BlockingScheduler
+    from apscheduler.schedulers.background import BackgroundScheduler
 
-    sched = BlockingScheduler()
+    sched = BackgroundScheduler(daemon=True)
 
     @sched.scheduled_job("interval", minutes=1)
     def users_coins_save():
