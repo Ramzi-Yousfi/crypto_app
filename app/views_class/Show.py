@@ -1,7 +1,7 @@
 from io import BytesIO
 from matplotlib.figure import Figure
 from base64 import b64encode
-import matplotlib.pyplot as plt
+
 
 class Show():
 
@@ -13,10 +13,27 @@ class Show():
         self.coin_saved_week = []
 
     def get_coin_saved_week(self):
+        """
+        The get_coin_saved_week function is a method of the Coin class. It takes no arguments and returns
+        a list of Daily objects that have the same name as the coin attribute
+
+        :param self: Allow the function to refer to itself
+        :return: A list of all the coins that have the same name that were saved in a week
+
+        """
         [self.coin_saved_week.append(i) for i in self.daily if i.name == self.coins.name]
         return self.coin_saved_week
 
     def figure_gain_value(self):
+        """
+        The figure_gain_value function is used to create a graph that shows the evolution of the value of coins saved over time.
+        It takes as input a list of CoinSavedWeek objects and returns an image url.
+
+        :param self: Access variables that belongs to the class
+        :return: A figure that represents the evolution of the value of coins saved during a week
+        """
+        """"""
+
         self.get_coin_saved_week()
         for d in self.coin_saved_week:
             self.bins.append(d.date_add.strftime('%m-%d'))
@@ -40,6 +57,7 @@ class Show():
         fig.suptitle("semaine", fontsize=10, color='#1fc36c',y=0.1)
 
         ## The figure is plotted here
+
         ax.plot(self.bins, self.values, color='#1fc36c')
         if len(self.bins) > 1:
             maxi = max(self.values)

@@ -10,6 +10,11 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    The login function is used to connect the user with his account.
+    It checks if the email and password are corrects, then it logins him in.
+    :return: The template auth/login
+    """
     form = LoginForm()
     title = 'Login'
     if current_user.is_authenticated:
@@ -17,7 +22,6 @@ def login():
     else:
         if request.method == 'GET':
             return render_template('auth/login.html', form=form)
-
         email = request.form.get('email')
         password = request.form.get('password')
         user = User.query.filter_by(email=email).first()
@@ -32,31 +36,44 @@ def login():
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
+    """
+    The register function allows the user to register in the database.
+    It takes as input a form and checks if it is valid. hash the password  ; it adds the new user to the database and redirects him/her
+    to login page.
+    :return: : request and redirect with or without error
+    """
     form = RegistrationForm()
     if request.method == 'GET':
         return render_template('auth/register.html', form=form)
     email = request.form.get('email')
     username = request.form.get('username')
     password = request.form.get('password')
+    confirm_password = request.form.get('confirm_password')
     user = User.query.filter_by(email=email).first()
-    print("use:" ,user)
     if user:
         flash('cette adresse email existe déjà merci d\'utliser une autre')
         return redirect(url_for('auth.register'))
     if form.validate_on_submit():
         new_user = User(email=email, username=username, password=generate_password_hash(password, method='sha256'))
-        db.session.add(new_user)
-        db.session.commit()
+        #db.session.add(new_user)
+        #db.session.commit()
         flash('Vous êtes bien inscrit')
         return redirect(url_for('auth.login'))
+    elif confirm_password != password:
+        flash('les mots de passe ne correspondent pas')
+        return redirect(url_for('auth.register'))
     else:
-        flash('Veuillez remplir tous les champs')
+        flash('Veuillez remplir tous les champs ou vérifier vos informations')
         return redirect(url_for('auth.register'))
 
 
 @auth.route('/logout')
 @login_required
 def logout():
+    """
+    The logout function logs the user out of their account and redirects them to the list_coins page.
+    :return: A redirect to the list_coins view function
+    """
     session.pop('username', None)
     logout_user()
     return redirect(url_for('coin.list_coins'))

@@ -45,14 +45,14 @@ def create_app():
 
     from apscheduler.schedulers.background import BackgroundScheduler
 
-    sched = BackgroundScheduler(daemon=True)
+    scheduler = BackgroundScheduler(daemon=True)
 
-    @sched.scheduled_job("interval", days=1)
+    @scheduler.scheduled_job("interval", days=1)
     def users_coins_save():
         with app.app_context():
             DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
 
-    sched.start()
+    scheduler.start()
     with app.app_context():
         db.init_app(app)
         db.create_all()

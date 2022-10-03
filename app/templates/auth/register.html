@@ -24,10 +24,14 @@
                     <div class="auth-page">
                         <div class="container-fluid form-group auth-form">
                             {{ form.csrf_token }}
-                            {{ render_field(form.email,placeholder='hello@live.fr') }}
-                            {{ render_field(form.username,placeholder='RAMZI') }}
-                            {{ render_field(form.password,placeholder="---------------") }}
-                            {{ render_field(form.confirm_password,placeholder="---------------") }}
+                           {{ form.email.label }}
+                            {{ form.email(class="form-control") }}
+                            {{ form.username.label }}
+                            {{ form.username(class="form-control") }}
+                            {{ form.password.label }}
+                            {{ form.password(class='form-control',placeholder='********') }}
+                            {{ form.confirm_password.label }}
+                            {{ form.confirm_password(class='form-control',placeholder='********') }}
                             <div class="mt-5"></div>
                             {{ form.submit(class='btn btn-light',value='inscription') }}
                         </div>

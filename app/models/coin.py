@@ -17,6 +17,13 @@ class Coin(db.Model):
         self.user_id = user_id
 
     def get_user_coin(self, user_id):
+        """
+        The get_user_coin function is used to retrieve all the coins that belong to a specific user.
+        It takes in the user_id as an argument and returns a list of coins.
+        :param self: Access variables that belongs to the class
+        :param user_id: Filter the query and only return the coins that belong to a specific user
+        :return: The coin object for the user_id passed in
+        """
         return Coin.query.filter_by(user_id=user_id).all()
 
     def __repr__(self):

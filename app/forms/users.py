@@ -1,14 +1,18 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField,EmailField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length
+from pyparsing import Regex
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, EmailField, validators
+from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length, Regexp
 from app.models.users import User
 
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    password = PasswordField('Mot de passe', validators=[validators.Regexp(r'[A-Za-z0-9_]+'), Length(min=8, max=20)])
+    confirm_password = PasswordField('Confirmer mot de passe ', validators=[
+        validators.DataRequired(),
+        validators.EqualTo('password', message='mot de passe différent')
+    ])
     submit = SubmitField('Register')
 
 

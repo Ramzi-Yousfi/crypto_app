@@ -18,6 +18,13 @@ class CmcApi:
         }
 
     def get_all(self):
+        """
+        The get_all function retrieves all the data from the API and returns it as a list of dictionaries.
+        The get_all function is called by other functions to retrieve all the data from their respective endpoints.
+
+        :param self: Access variables that belongs to the class
+        :return: The data from the api
+        """
         response = requests.get(self.base_url, headers=self.headers, params=self.parameters)
         if response:
             response_json = response.json()

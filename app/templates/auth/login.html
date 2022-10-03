@@ -17,24 +17,25 @@
                                             <a href="{{ url_for('auth.register') }}">aller a la page d'inscription</a>
                                         </div>
                                     {% else %}
-                                        <div class="alert alert-success">{{ message }}</div>
+                                        <div class="alert alert-success text-center">{{ message }} </div>
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
                         {% endwith %}
                     </div>
-                <div class="auth-page">
-                <div class="container-fluid form-group auth-form">
-                        <h5>{{ form.email.label }}</h5>
-                        {{ form.email(class='form-control',placeholder='email') }}
-                        <h5>{{ form.password.label }}</h5>
-                        {{ form.password(class='form-control',placeholder='mot de passe') }}
-                        <br>
-                        {{ form.submit(class='btn btn-light ',value='connexion') }}
+                    <div class="auth-page">
+                        <div class="container-fluid form-group auth-form">
+                            <h5>{{ form.email.label }}</h5>
+                            {{ form.email(class='form-control',placeholder='email') }}
+                            <h5>{{ form.password.label }}</h5>
+                            {{ form.password(class='form-control',placeholder='mot de passe') }}
+                            <br>
+                            {{ form.submit(class='btn btn-light ',value='connexion') }}
+                        </div>
+                        <h4 class="mt-4">Pas encore inscrit</h4>
+                        <a id="link-to-register" href="{{ url_for('auth.register') }}"
+                           class="btn btn-outline-secondary mt-4">Inscription</a>
                     </div>
-                       <h4 class="mt-4">Pas encore inscrit</h4>
-                    <a id="link-to-register" href="{{ url_for('auth.register') }}" class="btn btn-outline-secondary mt-4">Inscription</a>
-                 </div>
                 </form>
             </div>
         </div>

@@ -11,6 +11,15 @@ class Create():
         self.current_user = current_user
 
     def new_coins(self):
+        """
+        The new_coins function creates a new coin object and adds it to the database.
+        It then redirects the user to the list_coins function.
+
+        :param self: Access variables that belongs to the class
+        :return: The redirect to the list_coins function
+        """
+
+
         new_coin = Coin(name=self.form.name.data, quantity=self.form.quantity.data, value=self.form.value.data,
                         user_id=self.current_user.id)
         self.db.session.add(new_coin)
