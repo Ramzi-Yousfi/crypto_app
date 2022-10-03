@@ -20,4 +20,4 @@ class Testing(Config):
 class Production(Config):
     DEBUG = False
     PORT = os.environ.get('PORT') or 8080
-
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_TEST_DATABASE_URI')
