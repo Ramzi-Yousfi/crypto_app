@@ -18,12 +18,14 @@ class Read():
             self.coins = Coin.query.filter_by(user_id=current_user.id).all()
 
     def get_saved_coin_names(self):
+
         """
         The get_saved_coin_names function returns a list of all the names of daily coins that have been saved to the database.
         we will use it in the select field in the add coin form.
         :param self: Reference the class itself
         :return: A list of the names of all saved coins
         """
+
         saved_coins_names = [saved_coins.name for saved_coins in self.all_data]
         return saved_coins_names
 

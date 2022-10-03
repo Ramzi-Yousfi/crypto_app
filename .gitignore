@@ -1,14 +1,23 @@
 # Byte-compiled
 __pycache__/
 *.pyc
+<<<<<<< HEAD
 # environment variables file
 .coverage
 .env
 .pocfile
+=======
+
+# environment variables file
+
+>>>>>>> 52e7054c0c700fe0c041a2996f991f20cbb2254a
 env/
 # vscode editor settings
 .vscode/
 .idea
 # migrations
 migrations/
+<<<<<<< HEAD
 
+=======
+>>>>>>> 52e7054c0c700fe0c041a2996f991f20cbb2254a

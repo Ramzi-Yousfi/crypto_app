@@ -35,7 +35,11 @@ class DailyCoins(db.Model):
             print('Daily date saved')
         check = DailyCoins.query.all()
         last_coin = DailyCoins.query.order_by(DailyCoins.id.desc()).first()
+<<<<<<< HEAD
         if len(check) >= 170:
+=======
+        if len(check) >= 100:
+>>>>>>> 52e7054c0c700fe0c041a2996f991f20cbb2254a
             for i in range((last_coin.id - len(check)), (last_coin.id - len(check)) + 30):
                 coin_delete = delete(DailyCoins).where(DailyCoins.id == i)
                 db.session.execute(coin_delete)
