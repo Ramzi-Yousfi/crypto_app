@@ -4,7 +4,7 @@ from app.models.users import User
 from app.models import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
-
+import re # for regex
 auth = Blueprint('auth', __name__)
 
 
@@ -51,19 +51,23 @@ def register():
     confirm_password = request.form.get('confirm_password')
     user = User.query.filter_by(email=email).first()
     if user:
-        flash('cette adresse email existe déjà merci d\'utliser une autre')
+        flash('cette adresse email existe déjà !')
         return redirect(url_for('auth.register'))
-    if form.validate_on_submit():
+    if form.validate_on_submit() and password == confirm_password and re.match(r"(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])", password):
         new_user = User(email=email, username=username, password=generate_password_hash(password, method='sha256'))
-        #db.session.add(new_user)
-        #db.session.commit()
+        db.session.add(new_user)
+        db.session.commit()
         flash('Vous êtes bien inscrit')
         return redirect(url_for('auth.login'))
     elif confirm_password != password:
         flash('les mots de passe ne correspondent pas')
         return redirect(url_for('auth.register'))
+    elif re.match(r"(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])", password) == None:
+        flash('le mot de passe doit contenir au moins 8 caractères et au moins une lettre majuscule, une lettre minuscule et un chiffre ')
+        return redirect(url_for('auth.register'))
     else:
-        flash('Veuillez remplir tous les champs ou vérifier vos informations')
+
+        flash('Veuillez remplir des informations valides')
         return redirect(url_for('auth.register'))
 
 

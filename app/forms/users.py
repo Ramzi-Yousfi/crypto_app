@@ -6,12 +6,13 @@ from app.models.users import User
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+    username = StringField('Nom d\'utilisateur', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Mot de passe', validators=[validators.Regexp(r'[A-Za-z0-9_]+'), Length(min=8, max=20)])
+    password = PasswordField('Mot de passe', validators=[DataRequired(), Length(min=8, max=20)])
     confirm_password = PasswordField('Confirmer mot de passe ', validators=[
-        validators.DataRequired(),
-        validators.EqualTo('password', message='mot de passe différent')
+        DataRequired(),
+        EqualTo('password', message='mot de passe différent'),
+        Length(min=8, max=20)
     ])
     submit = SubmitField('Register')
 
