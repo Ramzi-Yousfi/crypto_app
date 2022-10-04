@@ -66,7 +66,6 @@ def register():
         flash('le mot de passe doit contenir au moins 8 caractères et au moins une lettre majuscule, une lettre minuscule et un chiffre ')
         return redirect(url_for('auth.register'))
     else:
-
         flash('Veuillez remplir des informations valides')
         return redirect(url_for('auth.register'))
 
