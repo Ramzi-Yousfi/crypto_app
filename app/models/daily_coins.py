@@ -69,4 +69,4 @@ class DailyCoins(db.Model):
                 print('Daily more then 20 days deleted')
 
     def __repr__(self):
-        return '<daily_saved %r>' % self.name
+        return '<daily_saved %r>' % self.date_add

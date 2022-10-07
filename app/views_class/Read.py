@@ -68,7 +68,7 @@ class Read():
                   the user_data :array
                   list and the total value of the user's collection : float
         """
-
+        print(DailyCoins.query.all())
         data = self.get_user_data()
         for i in self.coins:
             for d in data:

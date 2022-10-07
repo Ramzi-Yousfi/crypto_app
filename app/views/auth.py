@@ -22,7 +22,7 @@ def login():
     else:
         if request.method == 'GET':
             return render_template('auth/login.html', form=form)
-        email = request.form.get('email')
+        email = request.form.get('email').lower()
         password = request.form.get('password')
         user = User.query.filter_by(email=email).first()
         if user is None or check_password_hash(user.password, password) == False:
@@ -45,7 +45,7 @@ def register():
     form = RegistrationForm()
     if request.method == 'GET':
         return render_template('auth/register.html', form=form)
-    email = request.form.get('email')
+    email = request.form.get('email').lower()
     username = request.form.get('username')
     password = request.form.get('password')
     confirm_password = request.form.get('confirm_password')
