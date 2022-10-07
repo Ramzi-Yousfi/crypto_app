@@ -7,7 +7,7 @@ from flask_login import LoginManager
 from whitenoise import WhiteNoise
 from app.helpers.CmcApi import CmcApi
 from app.models import db, migrate
-from flask_apscheduler import APScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 # ======================================Database models ====================================
 from app.models.users import User
 from app.models.coin import Coin
@@ -33,17 +33,8 @@ def create_app():
     migrate.init_app(app, db)
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
-    #scheduler = APScheduler()
-    #scheduler.init_app(app)
-    #scheduler.start()
+
     # =====================Inisialise the recusive of api call evry days  ========
-
-    #@scheduler.task('interval', id='do_job_1', seconds = 120 , misfire_grace_time=3000)
-    #def users_coins_save():
-    #    with app.app_context():
-    #        DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
-
-    from apscheduler.schedulers.background import BackgroundScheduler
 
     scheduler = BackgroundScheduler(daemon=True)
 
@@ -53,6 +44,7 @@ def create_app():
             DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
 
     scheduler.start()
+
     with app.app_context():
         db.init_app(app)
         db.create_all()
