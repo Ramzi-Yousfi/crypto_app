@@ -35,7 +35,15 @@ def create_app():
     login_manager.init_app(app)
 
     # =====================Inisialise the recusive of api call evry days  ========
+    scheduler = BackgroundScheduler()
 
+    @scheduler.scheduled_job("interval", minutes=2, misfire_grace_time=900, max_instances=1)
+    def users_coins_save():
+        with app.app_context():
+            DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
+            # DailyCoins().daily_coin_save(date='2021-05-01')
+
+    scheduler.start()
 
 
     with app.app_context():
@@ -43,15 +51,7 @@ def create_app():
         db.create_all()
         db.session.commit()
         # =====================Inisialise the recusive of api call evry days  ========
-        scheduler = BackgroundScheduler()
 
-        @scheduler.scheduled_job("interval", days=1 , misfire_grace_time=900, max_instances=1)
-        def users_coins_save():
-            with app.app_context():
-                DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
-                # DailyCoins().daily_coin_save(date='2021-05-01')
-
-        scheduler.start()
         print('Scheduler started!')
         # =====================================Small HTTP Errors Handling========================
         @app.errorhandler(404)
