@@ -40,10 +40,10 @@ def create_app():
     @scheduler.scheduled_job("interval", days=1, misfire_grace_time=20,max_instances=1,coalesce=True)
     def users_coins_save():
         with app.app_context():
-            #DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
-            DailyCoins().daily_coin_save(date='2022-10-06')
+            DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
+            #DailyCoins().daily_coin_save(date='2022-10-06')
             print('users_coins_save_______________________________')
-    #scheduler.start()
+    scheduler.start()
 
 
     with app.app_context():
