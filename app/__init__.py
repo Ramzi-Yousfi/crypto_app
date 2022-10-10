@@ -47,6 +47,7 @@ def create_app():
 
         @scheduler.scheduled_job("interval", seconds=250)
         def users_coins_save():
+            with app.app_context():
                 DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
                 # DailyCoins().daily_coin_save(date='2021-05-01')
 
