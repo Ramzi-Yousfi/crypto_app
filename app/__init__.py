@@ -41,7 +41,7 @@ def create_app():
     def users_coins_save():
         with app.app_context():
             DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
-            #DailyCoins().daily_coin_save(date='2022-10-06')
+            #DailyCoins().daily_coin_save(date='2022-10-10')
             print('users_coins_save_______________________________')
     scheduler.start()
 
@@ -50,9 +50,6 @@ def create_app():
         db.init_app(app)
         db.create_all()
         db.session.commit()
-        # =====================Inisialise the recusive of api call evry days  ========
-
-        print('Scheduler started!')
         # =====================================Small HTTP Errors Handling========================
         @app.errorhandler(404)
         def page_not_found(e):
