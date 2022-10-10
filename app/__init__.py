@@ -51,7 +51,7 @@ def create_app():
                 DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
                 # DailyCoins().daily_coin_save(date='2021-05-01')
 
-        #scheduler.start()
+        scheduler.start()
         print('Scheduler started!')
         # =====================================Small HTTP Errors Handling========================
         @app.errorhandler(404)
