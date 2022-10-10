@@ -45,7 +45,7 @@ def create_app():
         # =====================Inisialise the recusive of api call evry days  ========
         scheduler = BackgroundScheduler(daemon=True)
 
-        @scheduler.scheduled_job("cron", second='20')
+        @scheduler.scheduled_job("cron", second='30')
         def users_coins_save():
             with app.app_context():
                 DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
