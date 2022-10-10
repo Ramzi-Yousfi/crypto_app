@@ -63,11 +63,11 @@ class Show():
             maxi = max(self.values)
             mini = min(self.values)
             if abs(maxi) > abs(mini):
-                ax.set(xlabel='', ylabel='valeur des gains en euros', xlim=(0, 6), ylim=(((maxi * 1.3) * -1), maxi*1.3))
+                ax.set(xlabel='', ylabel='valeur des gains en euros', xlim=(0, 8), ylim=(((maxi * 1.3) * -1), maxi*1.3))
             else:
-                ax.set(xlabel='', ylabel='valeur des gains en euros', xlim=(0, 6), ylim=(mini*1.3, ((mini*1.3) * -1)))
+                ax.set(xlabel='', ylabel='valeur des gains en euros', xlim=(0, 8), ylim=(mini*1.3, ((mini*1.3) * -1)))
         else:
-            ax.set(xlabel='', ylabel='valeur des gains en euros', xlim=(0, 6), ylim=(self.values[0]*1.3, ((self.values[0] * 1.3) * -1)))
+            ax.set(xlabel='', ylabel='valeur des gains en euros', xlim=(0, 8), ylim=(self.values[0]*1.3, ((self.values[0] * 1.3) * -1)))
         b = BytesIO()
         fig.savefig(b, format="png")
         dataurl = 'data:image/png;base64,' + b64encode(b.getvalue()).decode('ascii')

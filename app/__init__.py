@@ -36,21 +36,22 @@ def create_app():
 
     # =====================Inisialise the recusive of api call evry days  ========
 
-    scheduler = BackgroundScheduler(daemon=True)
 
-    @scheduler.scheduled_job("interval", days=1)
-    def users_coins_save():
-        with app.app_context():
-            DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
-            #DailyCoins().daily_coin_save(date='2021-05-01')
-
-    scheduler.start()
 
     with app.app_context():
         db.init_app(app)
         db.create_all()
         db.session.commit()
+        # =====================Inisialise the recusive of api call evry days  ========
+        scheduler = BackgroundScheduler(daemon=True)
 
+        @scheduler.scheduled_job("cron", second='20')
+        def users_coins_save():
+            with app.app_context():
+                DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
+                # DailyCoins().daily_coin_save(date='2021-05-01')
+
+        scheduler.start()
         # =====================================Small HTTP Errors Handling========================
         @app.errorhandler(404)
         def page_not_found(e):
