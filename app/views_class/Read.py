@@ -52,7 +52,9 @@ class Read():
         :return: The user_data it's the user coin with the information of daily coins : array
         """
         unique = self.unique_coins_names()
+        print('unique',unique)
         for d in self.all_data:
+            print('d.name',d.name)
             if d.name in unique:
                 self.user_data.append(d)
         return self.user_data
@@ -69,6 +71,7 @@ class Read():
                   list and the total value of the user's collection : float
         """
         data = self.get_user_data()
+        print(self.coins)
         for i in self.coins:
             for d in data:
                 if i.name == d.name:

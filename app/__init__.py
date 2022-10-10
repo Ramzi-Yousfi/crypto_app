@@ -43,15 +43,16 @@ def create_app():
         db.create_all()
         db.session.commit()
         # =====================Inisialise the recusive of api call evry days  ========
-        scheduler = BackgroundScheduler(daemon=True)
+        scheduler = BackgroundScheduler()
 
-        @scheduler.scheduled_job("interval", seconds=250)
+        @scheduler.scheduled_job("cron", minute=4)
         def users_coins_save():
             with app.app_context():
                 DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
                 # DailyCoins().daily_coin_save(date='2021-05-01')
 
-        scheduler.start()
+        #scheduler.start()
+        print('Scheduler started!')
         # =====================================Small HTTP Errors Handling========================
         @app.errorhandler(404)
         def page_not_found(e):
