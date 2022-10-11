@@ -18,8 +18,6 @@ class Create():
         :param self: Access variables that belongs to the class
         :return: The redirect to the list_coins function
         """
-
-
         new_coin = Coin(name=self.form.name.data, quantity=self.form.quantity.data, value=self.form.value.data,
                         user_id=self.current_user.id)
         self.db.session.add(new_coin)

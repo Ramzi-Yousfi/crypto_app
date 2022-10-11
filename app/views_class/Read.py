@@ -25,7 +25,6 @@ class Read():
         :return: A list of the names of all saved coins
         """
         saved_coins_names = [saved_coins.name for saved_coins in self.all_data]
-        print("saved",saved_coins_names)
         return saved_coins_names
 
     def unique_coins_names(self):
@@ -70,8 +69,6 @@ class Read():
                   list and the total value of the user's collection : float
         """
         data = self.get_user_data()
-        print(self.all_data)
-        print('len------------------------------------------------',len(self.all_data))
         for i in self.coins:
             for d in data:
                 if i.name == d.name:

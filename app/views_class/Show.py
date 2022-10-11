@@ -37,7 +37,6 @@ class Show():
         self.get_coin_saved_week()
         for d in self.coin_saved_week:
             self.bins.append(d.date_add.strftime('%m-%d'))
-            print(d.date_add.strftime('%m-%d'))
             self.values.append(d.value - self.coins.value)
         self.bins[0] = ''
         ## The figure style is set here
