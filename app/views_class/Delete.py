@@ -45,7 +45,7 @@ class Delete():
         It is called in POST method.
         :param self: Access variables that belongs to the class
         :return: The redirect to the list_coins function or the errors
-                 the quantity and the name of the coin
+                  the quantity and the name of the coin
         """
         new_coin = Coin.query.filter_by(id=self.form.name.data, user_id=self.current_user.id).first()
         self.form.quantity.data = float(self.form.quantity.data)
