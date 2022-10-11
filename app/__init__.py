@@ -35,7 +35,7 @@ def create_app():
     login_manager.init_app(app)
 
     # =====================Inisialise the recusive of api call evry days  ========
-    scheduler = BackgroundScheduler(demon=True)
+    scheduler = BackgroundScheduler()
 
     @scheduler.scheduled_job("interval", minutes=2, misfire_grace_time=20,max_instances=1,coalesce=True)
     def users_coins_save():
