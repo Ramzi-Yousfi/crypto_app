@@ -1,1 +1,1 @@
-web: gunicorn run:app --deamon
+web: gunicorn run:app --daemon
