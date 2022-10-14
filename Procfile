@@ -1,1 +1,1 @@
-web: gunicorn run:app.wsgi --daemon
+web: gunicorn run:app --reload=False
