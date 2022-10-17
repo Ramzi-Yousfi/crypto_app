@@ -35,15 +35,17 @@ def create_app():
     login_manager.init_app(app)
 
     # =====================Inisialise the recusive of api call evry days  ========
-    scheduler = BackgroundScheduler()
+    scheduler = BackgroundScheduler(deamon=True)
 
-    @scheduler.scheduled_job("interval", days=1, misfire_grace_time=20,max_instances=1,coalesce=True,start_date="2022-10-14 10:56:00")
+    @scheduler.scheduled_job("interval", days=1, misfire_grace_time=20,max_instances=1,coalesce=True,start_date="2022-10-17 01:56:00")
     def users_coins_save():
         with app.app_context():
             DailyCoins().daily_coin_save(date=datetime.now().strftime("%Y-%m-%d"))
-            #DailyCoins().daily_coin_save(date="2022-10-12")
+            #DailyCoins().daily_coin_save(date="2022-10-16")
             print('users_coins_save_______________________')
     scheduler.start()
+
+
 
 
     with app.app_context():
